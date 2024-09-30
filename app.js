@@ -195,9 +195,9 @@ function objectToArray(obj) {
 }
 
 const exampleObject = {
-    name: 'Alice',
-    age: 25,
-    city: 'Wonderland'
+    name: 'Abdurauf',
+    age: 11,
+    city: 'BAku'
 };
 
 const keyValuePairs = objectToArray(exampleObject);
@@ -211,6 +211,173 @@ const object2 = { b: 3, c: 4 };
 
 const mergedObject = mergeObjects(object1, object2);
 console.log(mergedObject); 
+//31
+function flattenArray(arr) {
+    return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
+const twoDArray = [[1, 2], [3, 4], [5]];
+const flattenedArray = flattenArray(twoDArray);
+console.log(flattenedArray);
+//32
+function factorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+  
+    return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); 
+console.log(factorial(0)); 
+console.log(factorial(1));
+//33
+function allPositive(arr) {
+    return arr.every(num => num > 0);
+}
+
+console.log(allPositive([1, 2, 3, 4])); 
+console.log(allPositive([-1, 2, 3, 4])); 
+console.log(allPositive([0, 1, 2])); 
+console.log(allPositive([5, 10, 15]));
+//34
+function filterByProperty(arr, property, value) {
+    return arr.filter(obj => obj[property] === value);
+}
+
+
+const data = [
+    { name: 'Abdu', age: 25 },
+    { name: 'Rauf', age: 30 },
+    { name: 'asd', age: 25 },
+    { name: 'Asdf', age: 40 }
+];
+
+const result1 = filterByProperty(data, 'age', 25);
+console.log(result1);
+//35
+function sortByProperty(arr, property) {
+    return arr.sort((a, b) => {
+        if (a[property] < b[property]) {
+            return -1; 
+        }
+        if (a[property] > b[property]) {
+            return 1; 
+        }
+        return 0; 
+    });
+}
+//36
+function deepEqual(obj1, obj2) {
+    if (obj1 === obj2) {
+        return true;
+    }
+    if (obj1 == null || obj2 == null || typeof obj1 !== 'object' || typeof obj2 !== 'object') {
+        return false;
+    }
+
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+        return false;
+    }
+
+    for (const key of keys1) {
+        if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
+            return false;
+        }
+    }
+
+    return true; 
+}
+
+
+const objA = { a: 1, b: { c: 2 } };
+const objB = { a: 1, b: { c: 2 } };
+const objC = { a: 1, b: { c: 3 } };
+
+console.log(deepEqual(objA, objB));
+console.log(deepEqual(objA, objC));
+//37
+function mostFrequentChar(str) {
+    const charCount = {};
+    
+    for (const char of str) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+
+    let maxChar = '';
+    let maxCount = 0;
+
+    for (const [char, count] of Object.entries(charCount)) {
+        if (count > maxCount) {
+            maxCount = count;
+            maxChar = char;
+        }
+    }
+
+    return maxChar;
+}
+
+console.log(mostFrequentChar("hello world")); 
+console.log(mostFrequentChar("character"));  
+console.log(mostFrequentChar("mississippi"));  
+//38
+function uniqueValues(arr14, arr24) {
+    // Combine the two arrays
+    const combined = [...arr14, ...arr24];
+    
+    // Use a Set to get unique values
+    return [...new Set(combined)];
+}
+
+// Example usage:
+const array14 = [1, 2, 3, 4];
+const array24 = [3, 4, 5, 6];
+
+const uniqueResult = uniqueValues(array14, array24);
+console.log(uniqueResult); 
+//39
+function countCharacter(str, char) {
+    let count = 0;
+    
+    for (const c of str) {
+        if (c === char) {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
+
+console.log(countCharacter("hello world", "l")); 
+console.log(countCharacter("character", "c"));    
+console.log(countCharacter("banana", "a"));      
+console.log(countCharacter("example", "z"));
+//40
+function isPrime(num) {
+    if (num <= 1) return false; 
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true; 
+}
+
+function getPrimesUpTo100() {
+    const primes = [];
+    for (let i = 1; i <= 100; i++) {
+        if (isPrime(i)) {
+            primes.push(i);
+        }
+    }
+    return primes;
+}
+
+const primeNumbers = getPrimesUpTo100();
+console.log(primeNumbers);
+
 
 
 
